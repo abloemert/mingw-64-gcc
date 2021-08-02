@@ -13,6 +13,7 @@ pacman -S --noconfirm --needed gcc cmake nasm
 
 mkdir dest
 DEST_DIR=$(pwd)/dest
+MAKE="make -j${NUMBER_OF_PROCESSORS} -O"
 
 wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v9.0.0.tar.bz2
 tar xjf mingw-w64-v9.0.0.tar.bz2
@@ -34,12 +35,12 @@ cd build-mingw-w64
   --disable-shared
 
 cd mingw-w64-headers
-make all "CFLAGS=-s -O3"
-make install
+${MAKE} all "CFLAGS=-s -O3"
+${MAKE} install
 cd ..
 
-make all "CFLAGS=-s -O3"
-make install
+${MAKE} all "CFLAGS=-s -O3"
+${MAKE} install
 cd ..
 
 wget -q http://ftpmirror.gnu.org/gcc/gcc-8.4.0/gcc-8.4.0.tar.gz
@@ -65,6 +66,6 @@ cd build
   --enable-threads=posix \
   --enable-libgomp
 
-make bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
-make install
+${MAKE} bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
+${MAKE} install
 
