@@ -1,6 +1,7 @@
 # build mingw-64 + gcc
 
-#set -u
+echo "running from:"
+pwd
 
 # exit if a command fails
 set -e
@@ -22,8 +23,8 @@ cd build-mingw-w64
   --host=x86_64-w64-mingw32 \
   --target=x86_64-w64-mingw32 \
   --disable-lib32 \
-  --prefix=../dest/x86_64-w64-mingw32 \
-  --with-sysroot=../dest/x86_64-w64-mingw32 \
+  --prefix=$(pwd)/../dest/x86_64-w64-mingw32 \
+  --with-sysroot=$(pwd)/../dest/x86_64-w64-mingw32 \
   --enable-wildcard \
   --with-libraries=winpthreads \
   --disable-shared \
