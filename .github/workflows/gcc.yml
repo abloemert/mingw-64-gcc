@@ -9,4 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: list dir
-        run: dir C:\msys64
+        run: dir C:\msys64\msys2_shell.cmd -where . test.sh
+      - name: print content
+        run: type foobar.txt
