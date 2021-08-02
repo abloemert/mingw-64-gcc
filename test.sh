@@ -1,7 +1,6 @@
 # build mingw-64 + gcc
 
 echo "running from: $(pwd)"
-env
 
 # exit if a command fails
 set -e
@@ -13,17 +12,16 @@ pacman -S --noconfirm --needed gcc cmake nasm
 
 mkdir dest
 DEST_DIR=$(pwd)/dest
-MAKE="make -j${NUMBER_OF_PROCESSORS} -O"
+#MAKE="make -j${NUMBER_OF_PROCESSORS} -O"
+MAKE="make -j1 -O"
 
-wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v9.0.0.tar.bz2
-tar xjf mingw-w64-v9.0.0.tar.bz2
+wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v7.0.0.tar.bz2
+tar xjf mingw-w64-v7.0.0.tar.bz2
 
 mkdir build-mingw-w64
 cd build-mingw-w64
 
-../mingw-w64-v9.0.0/configure --help
-
-../mingw-w64-v9.0.0/configure \
+../mingw-w64-v7.0.0/configure \
   --build=x86_64-w64-mingw32 \
   --host=x86_64-w64-mingw32 \
   --target=x86_64-w64-mingw32 \
@@ -33,11 +31,6 @@ cd build-mingw-w64
   --enable-wildcard \
   --with-libraries=winpthreads \
   --disable-shared
-
-cd mingw-w64-headers
-${MAKE} all "CFLAGS=-s -O3"
-${MAKE} install
-cd ..
 
 ${MAKE} all "CFLAGS=-s -O3"
 ${MAKE} install
