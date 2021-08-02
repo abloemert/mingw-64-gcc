@@ -8,8 +8,8 @@ set -e
 # print all commands
 set -x
 
-wget https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v9.0.0.tar.bz2
-tar xvjf mingw-w64-v9.0.0.tar.bz2
+wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v9.0.0.tar.bz2
+tar xjf mingw-w64-v9.0.0.tar.bz2
 
 mkdir build-mingw-w64
 cd build-mingw-w64
