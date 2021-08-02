@@ -20,6 +20,8 @@ tar xjf mingw-w64-v9.0.0.tar.bz2
 mkdir build-mingw-w64
 cd build-mingw-w64
 
+../mingw-w64-v9.0.0/configure --help
+
 ../mingw-w64-v9.0.0/configure \
   --build=x86_64-w64-mingw32 \
   --host=x86_64-w64-mingw32 \
