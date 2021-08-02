@@ -11,21 +11,18 @@ set -x
 pacman -S --noconfirm --needed gcc cmake nasm
 
 mkdir dest
-DEST_DIR=$(pwd)/dest
-#MAKE="make -j${NUMBER_OF_PROCESSORS} -O"
-MAKE="make -j1 -O"
+WORKSPACE=$(pwd)
+DEST_DIR=${WORKSPACE}/dest
+MAKE="make -j${NUMBER_OF_PROCESSORS} -O"
 
 wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v7.0.0.tar.bz2
 tar xjf mingw-w64-v7.0.0.tar.bz2
 
-mkdir build-mingw-w64
-cd build-mingw-w64
-
-../mingw-w64-v7.0.0/configure --help=recursive
-
-exit 1
+mkdir ${WORKSPACE}/build-mingw-w64
+cd ${WORKSPACE}/build-mingw-w64
 
 ../mingw-w64-v7.0.0/configure \
+  --disable-dependency-tracking \
   --build=x86_64-w64-mingw32 \
   --host=x86_64-w64-mingw32 \
   --target=x86_64-w64-mingw32 \
@@ -36,9 +33,14 @@ exit 1
   --with-libraries=winpthreads \
   --disable-shared
 
+cd mingw-w64-headers
 ${MAKE} all "CFLAGS=-s -O3"
 ${MAKE} install
-cd ..
+cd ${WORKSPACE}/build-mingw-w64
+
+${MAKE} all "CFLAGS=-s -O3"
+${MAKE} install
+cd ${WORKSPACE}
 
 wget -q http://ftpmirror.gnu.org/gcc/gcc-8.4.0/gcc-8.4.0.tar.gz
 tar xzf gcc-8.4.0.tar.gz
