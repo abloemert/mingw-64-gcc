@@ -1,0 +1,12 @@
+name: GCC
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2016
+    steps:
+      - uses: actions/checkout@v2
+      - name: list dir
+        run: dir C:\msys64
