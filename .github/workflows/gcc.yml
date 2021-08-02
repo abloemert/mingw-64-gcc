@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: build gcc
-        run: C:\msys64\msys2_shell.cmd -where . test.sh
+        run: C:\msys64\msys2_shell.cmd -where . -no-start -defterm test.sh
