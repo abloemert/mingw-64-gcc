@@ -9,6 +9,8 @@ set -e
 # print all commands
 set -x
 
+pacman -S --needed gcc make texinfo diffutils
+
 wget -q http://ftpmirror.gnu.org/gcc/gcc-8.4.0/gcc-8.4.0.tar.gz
 tar xzf gcc-8.4.0.tar.gz
 
