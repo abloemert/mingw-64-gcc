@@ -8,7 +8,5 @@ jobs:
     runs-on: windows-2016
     steps:
       - uses: actions/checkout@v2
-      - name: list dir
+      - name: build gcc
         run: C:\msys64\msys2_shell.cmd -where . test.sh
-      - name: print content
-        run: type foobar.txt
