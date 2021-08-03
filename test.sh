@@ -8,7 +8,7 @@ set -e
 # print all commands
 set -x
 
-pacman -S --noconfirm --needed gcc cmake nasm
+pacman -S --noconfirm --needed mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-nasm
 
 mkdir dest
 WORKSPACE=$(pwd)
