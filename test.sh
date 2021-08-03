@@ -80,8 +80,7 @@ echo "## Configure gcc"
   --disable-nls \
   --disable-shared \
   --disable-win32-registry \
-  --enable-threads=posix \
-  --enable-libgomp
+  --enable-threads=posix
 
 echo "## Build gcc"
 ${MAKE} bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
