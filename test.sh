@@ -18,6 +18,9 @@ WORKSPACE=$(pwd)
 DEST_DIR=${WORKSPACE}/dest
 MAKE="make -j${NUMBER_OF_PROCESSORS} -O"
 
+export CFLAGS="-s -O3 -Wno-expansion-to-defined -pipe"
+export CXXFLAGS="${CFLAGS}"
+
 wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v9.0.0.tar.bz2
 tar xjf mingw-w64-v9.0.0.tar.bz2
 
@@ -37,11 +40,11 @@ cd ${WORKSPACE}/build-mingw-w64
   --disable-shared
 
 cd mingw-w64-headers
-${MAKE} all "CFLAGS=-s -O3"
+${MAKE} all
 ${MAKE} install
 cd ${WORKSPACE}/build-mingw-w64
 
-${MAKE} all "CFLAGS=-s -O3 -Wno-expansion-to-defined"
+${MAKE} all
 ${MAKE} install
 cd ${WORKSPACE}
 
@@ -68,6 +71,6 @@ cd build
   --enable-threads=posix \
   --enable-libgomp
 
-${MAKE} bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
-${MAKE} install
+#${MAKE} bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
+#${MAKE} install
 
