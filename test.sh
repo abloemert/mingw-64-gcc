@@ -11,7 +11,7 @@ set -x
 # probably not needed, only nasm is not installed by default
 #pacman -S --noconfirm --needed mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-nasm
 
-export PATH=$PATH:/mingw32/bin/
+export PATH=$PATH:/mingw64/bin/
 
 mkdir dest
 WORKSPACE=$(pwd)
@@ -51,10 +51,21 @@ ${MAKE} all
 ${MAKE} install
 cd ${WORKSPACE}
 
-echo "## Download gcc sources"
+echo "## Download gcc sources and its dependencies"
 wget -q http://ftpmirror.gnu.org/gcc/gcc-8.4.0/gcc-8.4.0.tar.gz
 tar xzf gcc-8.4.0.tar.gz
-# todo: gmp, mpfr, mpc, isl
+wget -q http://ftpmirror.gnu.org/mpfr/mpfr-4.0.2.tar.gz
+tar xzf mpfr-4.0.2.tar.gz
+wget -q http://ftpmirror.gnu.org/gmp/gmp-6.1.2.tar.bz2
+tar xjf gmp-6.1.2.tar.bz2
+wget -q http://ftpmirror.gnu.org/mpc/mpc-1.1.0.tar.gz
+tar xzf mpc-1.1.0.tar.gz
+
+mv gcc-8.4.0 src
+mv mpfr-4.0.2 src/mpfr
+mv gmp-6.1.2 src/gmp
+mv mpc-1.1.0 src/mpc
+#todo: mv isl-0.20 src/isl
 
 echo "## Prepare to build gcc"
 cp -r ${DEST_DIR}/x86_64-w64-mingw32/lib ${DEST_DIR}/x86_64-w64-mingw32/lib64
@@ -80,6 +91,7 @@ echo "## Configure gcc"
   --disable-nls \
   --disable-shared \
   --disable-win32-registry \
+  --with-tune=haswell \
   --enable-threads=posix
 
 echo "## Build gcc"
