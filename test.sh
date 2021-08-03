@@ -30,9 +30,9 @@ cd ${WORKSPACE}/build-mingw-w64
 
 echo "## Configure mingw-w64"
 ../mingw-w64-v9.0.0/configure \
-  --disable-dependency-tracking \   # speed up one-time builds
+  --disable-dependency-tracking \
   --build=x86_64-w64-mingw32 \
-  --host=x86_64-w64-mingw32 \       # build a native compiler
+  --host=x86_64-w64-mingw32 \
   --target=x86_64-w64-mingw32 \
   --disable-lib32 \
   --prefix=${DEST_DIR}/x86_64-w64-mingw32 \
@@ -67,21 +67,21 @@ cd build
 
 echo "## Configure gcc"
 ../gcc-8.4.0/configure \
-  --disable-dependency-tracking \   # speed up one-time builds
-  --enable-languages=c,c++ \        # C and C++ only
+  --disable-dependency-tracking \
+  --enable-languages=c,c++ \
   --build=x86_64-w64-mingw32 \
-  --host=x86_64-w64-mingw32 \       # build a native compiler
+  --host=x86_64-w64-mingw32 \
   --target=x86_64-w64-mingw32 \
-  --disable-multilib \              # 64-bit only
-  --prefix=${DEST_DIR} \            # compiler target path
+  --disable-multilib \
+  --prefix=${DEST_DIR} \
   --with-sysroot=${DEST_DIR} \
-  --disable-libstdcxx-pch \         # prevent wasting space
-  --disable-libstdcxx-verbose \     # reduce executable size (doesn't affect the ABI)
-  --disable-nls \                   # disable Native Language Support
-  --disable-shared \                # disable the DLL's
+  --disable-libstdcxx-pch \
+  --disable-libstdcxx-verbose \
+  --disable-nls \
+  --disable-shared \
   --disable-win32-registry \
-  --enable-threads=posix \          # use winpthreads
-  --enable-libgomp                  # enable OpenMP
+  --enable-threads=posix \
+  --enable-libgomp
 
 echo "## Build gcc"
 ${MAKE} bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
