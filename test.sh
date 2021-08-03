@@ -22,14 +22,14 @@ export CFLAGS="-s -O3 -Wno-expansion-to-defined -pipe"
 export CXXFLAGS="${CFLAGS}"
 
 echo "## Download mingw-w64 sources"
-wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v9.0.0.tar.bz2
-tar xjf mingw-w64-v9.0.0.tar.bz2
+wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v6.0.0.tar.bz2
+tar xjf mingw-w64-v6.0.0.tar.bz2
 
 mkdir ${WORKSPACE}/build-mingw-w64
 cd ${WORKSPACE}/build-mingw-w64
 
 echo "## Configure mingw-w64"
-../mingw-w64-v9.0.0/configure \
+../mingw-w64-v6.0.0/configure \
   --disable-dependency-tracking \
   --build=x86_64-w64-mingw32 \
   --host=x86_64-w64-mingw32 \
