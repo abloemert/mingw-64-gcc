@@ -10,6 +10,8 @@ set -x
 
 pacman -S --noconfirm --needed mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-nasm
 
+find / -name "*gcc*"
+
 export PATH=$PATH:/c/mingw/bin
 
 mkdir dest
