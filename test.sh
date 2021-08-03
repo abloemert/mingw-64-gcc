@@ -18,13 +18,13 @@ WORKSPACE=$(pwd)
 DEST_DIR=${WORKSPACE}/dest
 MAKE="make -j${NUMBER_OF_PROCESSORS} -O"
 
-wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v7.0.0.tar.bz2
-tar xjf mingw-w64-v7.0.0.tar.bz2
+wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v9.0.0.tar.bz2
+tar xjf mingw-w64-v9.0.0.tar.bz2
 
 mkdir ${WORKSPACE}/build-mingw-w64
 cd ${WORKSPACE}/build-mingw-w64
 
-../mingw-w64-v7.0.0/configure \
+../mingw-w64-v9.0.0/configure \
   --disable-dependency-tracking \
   --build=x86_64-w64-mingw32 \
   --host=x86_64-w64-mingw32 \
