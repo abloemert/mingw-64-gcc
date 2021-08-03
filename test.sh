@@ -11,7 +11,7 @@ set -x
 # probably not needed, only nasm is not installed by default
 #pacman -S --noconfirm --needed mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-nasm
 
-export PATH=$PATH:/mingw64/bin/
+export PATH=$PATH:/mingw32/bin/
 
 mkdir dest
 WORKSPACE=$(pwd)
