@@ -37,7 +37,7 @@ cd mingw-w64-headers
 ${MAKE} all "CFLAGS=-s -O3"
 ${MAKE} install
 cd ${WORKSPACE}/build-mingw-w64
-cat ${DEST}/x86_64-w64-mingw32/include/stddef.h
+cat ${DEST_DIR}/x86_64-w64-mingw32/include/stddef.h
 
 ${MAKE} all "CFLAGS=-s -O3"
 ${MAKE} install
