@@ -60,12 +60,14 @@ wget -q http://ftpmirror.gnu.org/gmp/gmp-6.1.2.tar.bz2
 tar xjf gmp-6.1.2.tar.bz2
 wget -q http://ftpmirror.gnu.org/mpc/mpc-1.1.0.tar.gz
 tar xzf mpc-1.1.0.tar.gz
+wget -q https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.18.tar.bz2
+tar xjf isl-0.18.tar.bz2
 
 mv gcc-8.4.0 src
 mv mpfr-4.0.2 src/mpfr
 mv gmp-6.1.2 src/gmp
 mv mpc-1.1.0 src/mpc
-#todo: mv isl-0.20 src/isl
+mv isl-0.18 src/isl
 
 echo "## Prepare to build gcc"
 cp -r ${DEST_DIR}/x86_64-w64-mingw32/lib ${DEST_DIR}/x86_64-w64-mingw32/lib64
