@@ -8,5 +8,10 @@ jobs:
     runs-on: windows-2016
     steps:
       - uses: actions/checkout@v2
-      - name: build gcc
+      - name: Build gcc
         run: C:\msys64\msys2_shell.cmd -where . -no-start -defterm test.sh
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: dest
+          if-no-files-found: error
