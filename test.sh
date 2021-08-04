@@ -16,7 +16,7 @@ export PATH=$PATH:/mingw64/bin/
 mkdir dest
 WORKSPACE=$(pwd)
 DEST_DIR=${WORKSPACE}/dest
-MAKE="make -j${NUMBER_OF_PROCESSORS} -O"
+MAKE="make -s -j${NUMBER_OF_PROCESSORS} -O"
 
 export CFLAGS="-s -O3 -Wno-expansion-to-defined -pipe"
 export CXXFLAGS="${CFLAGS}"
