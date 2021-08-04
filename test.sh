@@ -70,14 +70,14 @@ mv mpc-1.1.0 src/mpc
 echo "## Prepare to build gcc"
 cp -r ${DEST_DIR}/x86_64-w64-mingw32/lib ${DEST_DIR}/x86_64-w64-mingw32/lib64
 cp -r ${DEST_DIR}/x86_64-w64-mingw32 ${DEST_DIR}/mingw
-mkdir -p gcc-8.4.0/gcc/winsup/mingw
-cp -r ${DEST_DIR}/x86_64-w64-mingw32/include gcc-8.4.0/gcc/winsup/mingw/include
+mkdir -p src/gcc/winsup/mingw
+cp -r ${DEST_DIR}/x86_64-w64-mingw32/include src/gcc/winsup/mingw/include
 
 mkdir build
 cd build
 
 echo "## Configure gcc"
-../gcc-8.4.0/configure \
+../src/configure \
   --disable-dependency-tracking \
   --enable-languages=c,c++ \
   --build=x86_64-w64-mingw32 \
