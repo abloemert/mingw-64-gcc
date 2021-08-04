@@ -11,7 +11,7 @@ set -x
 # probably not needed, only nasm is not installed by default
 #pacman -S --noconfirm --needed mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-nasm
 
-export PATH=$PATH:/mingw64/bin/
+export PATH=$PATH:/mingw32/bin/
 
 mkdir dest
 WORKSPACE=$(pwd)
@@ -31,7 +31,7 @@ cd ${WORKSPACE}/build-mingw-w64
 echo "## Configure mingw-w64"
 ../mingw-w64-v6.0.0/configure \
   --disable-dependency-tracking \
-  --build=x86_64-w64-mingw32 \
+  --build=i686-w64-mingw32 \
   --host=x86_64-w64-mingw32 \
   --target=x86_64-w64-mingw32 \
   --disable-lib32 \
@@ -80,7 +80,7 @@ echo "## Configure gcc"
 ../src/configure \
   --disable-dependency-tracking \
   --enable-languages=c,c++ \
-  --build=x86_64-w64-mingw32 \
+  --build=i686-w64-mingw32 \
   --host=x86_64-w64-mingw32 \
   --target=x86_64-w64-mingw32 \
   --disable-multilib \
