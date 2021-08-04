@@ -30,7 +30,9 @@ cd ${WORKSPACE}/build-mingw-w64
 
 echo "## Configure mingw-w64"
 ../mingw-w64-v6.0.0/configure \
+  --build=x86_64-w64-mingw32 \
   --host=x86_64-w64-mingw32 \
+  --target=x86_64-w64-mingw32 \
   --disable-lib32 \
   --prefix=${DEST_DIR}/x86_64-w64-mingw32 \
   --with-sysroot=${DEST_DIR}/x86_64-w64-mingw32 \
@@ -78,7 +80,9 @@ cd build
 echo "## Configure gcc"
 ../src/configure \
   --enable-languages=c,c++ \
+  --build=x86_64-w64-mingw32 \
   --host=x86_64-w64-mingw32 \
+  --target=x86_64-w64-mingw32 \
   --disable-multilib \
   --prefix=${DEST_DIR} \
   --with-sysroot=${DEST_DIR} \
