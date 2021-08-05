@@ -15,7 +15,7 @@ export PATH=$PATH:/mingw64/bin/
 
 mkdir dest
 WORKSPACE=$(pwd)
-DEST_DIR=${WORKSPACE}/dest
+PREFIX=${WORKSPACE}/dest
 MAKE="make -s -j${NUMBER_OF_PROCESSORS} -O"
 
 export CFLAGS="-s -O3 -Wno-expansion-to-defined -pipe"
@@ -34,8 +34,8 @@ echo "## Configure mingw-w64"
   --host=x86_64-w64-mingw32 \
   --target=x86_64-w64-mingw32 \
   --disable-lib32 \
-  --prefix=${DEST_DIR}/x86_64-w64-mingw32 \
-  --with-sysroot=${DEST_DIR}/x86_64-w64-mingw32 \
+  --prefix=${PREFIX}/x86_64-w64-mingw32 \
+  --with-sysroot=${PREFIX}/x86_64-w64-mingw32 \
   --enable-wildcard \
   --with-libraries=winpthreads \
   --disable-shared
@@ -69,30 +69,51 @@ mv mpc-1.1.0 src/mpc
 mv isl-0.18 src/isl
 
 echo "## Prepare to build gcc"
-cp -r ${DEST_DIR}/x86_64-w64-mingw32/lib ${DEST_DIR}/x86_64-w64-mingw32/lib64
-cp -r ${DEST_DIR}/x86_64-w64-mingw32 ${DEST_DIR}/mingw
+cp -r ${PREFIX}/x86_64-w64-mingw32/lib ${PREFIX}/x86_64-w64-mingw32/lib64
+cp -r ${PREFIX}/x86_64-w64-mingw32 ${PREFIX}/mingw
 mkdir -p src/gcc/winsup/mingw
-cp -r ${DEST_DIR}/x86_64-w64-mingw32/include src/gcc/winsup/mingw/include
+cp -r ${PREFIX}/x86_64-w64-mingw32/include src/gcc/winsup/mingw/include
 
 mkdir build
 cd build
 
 echo "## Configure gcc"
 ../src/configure \
-  --enable-languages=c,c++ \
+  --prefix=${PREFIX} \
+  --with-slibdir="${PREFIX}/lib" \
+  --libdir="${PREFIX}/lib" \
   --build=x86_64-w64-mingw32 \
   --host=x86_64-w64-mingw32 \
   --target=x86_64-w64-mingw32 \
+  --enable-default-pie \
+  --enable-languages=c,c++,fortran,objc,obj-c++ \
+  --enable-__cxa_atexit \
+  --disable-libmudflap \
+  --enable-libgomp \
+  --disable-libssp \
+  --enable-libquadmath \
+  --enable-libquadmath-support \
+  --enable-libsanitizer \
+  --enable-lto \
+  --enable-threads=posix \
+  --enable-target-optspace \
+  --enable-plugin \
+  --enable-gold \
+  --disable-nls \
+  --disable-bootstrap \
   --disable-multilib \
-  --prefix=${DEST_DIR} \
-  --with-sysroot=${DEST_DIR} \
+  --enable-long-long \
+  --enable-default-pie \
+  --with-sysroot=${PREFIX} \
   --disable-libstdcxx-pch \
   --disable-libstdcxx-verbose \
-  --disable-nls \
-  --disable-shared \
   --disable-win32-registry \
-  --with-tune=haswell \
-  --enable-threads=posix
+  --with-tune=haswell
+
+#  --with-sysroot=${PREFIX}/${TARGET}/sysroot
+#  --with-build-sysroot=${BUILD_PREFIX}/${TARGET}/sysroot
+#  --with-gxx-include-dir="${PREFIX}/${TARGET}/include/c++/${gcc_version}"
+
 
 echo "## Build gcc"
 ${MAKE} bootstrap "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
