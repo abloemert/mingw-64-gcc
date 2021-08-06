@@ -38,8 +38,8 @@ echo "## Configure mingw-w64"
   --host=${HOST} \
   --target=${TARGET} \
   --disable-lib32 \
-  --prefix=${PREFIX}/${TARGET} \
-  --with-sysroot=${PREFIX}/${TARGET}/sysroot \
+  --prefix=${PREFIX} \
+  --with-sysroot=${PREFIX} \
   --enable-wildcard \
   --with-libraries=winpthreads \
   --disable-shared
@@ -107,8 +107,8 @@ echo "## Configure gcc"
   --disable-multilib \
   --enable-long-long \
   --enable-default-pie \
-  --with-sysroot=${PREFIX}/${TARGET}/sysroot
-  --with-gxx-include-dir="${PREFIX}/${TARGET}/include/c++/8.4.0"
+  --with-sysroot=${PREFIX}
+  --with-gxx-include-dir="${PREFIX}/include/c++/8.4.0"
   --disable-libstdcxx-pch \
   --disable-libstdcxx-verbose \
   --disable-win32-registry \
