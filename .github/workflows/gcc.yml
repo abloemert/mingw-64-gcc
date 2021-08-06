@@ -8,6 +8,10 @@ jobs:
     runs-on: windows-2016
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2.1.6
+        with:
+          path: "*.tar*"
+          key: ${{ runner.os }}-gcc
       - name: Build gcc
         run: C:\msys64\msys2_shell.cmd -where . -no-start -defterm test.sh
       - name: Upload build artifacts
