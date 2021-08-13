@@ -38,8 +38,8 @@ echo "## Configure mingw-w64"
   --host=${HOST} \
   --target=${TARGET} \
   --disable-lib32 \
-  --prefix=${PREFIX} \
-  --with-sysroot=${PREFIX} \
+  --prefix=${PREFIX}/${TARGET} \
+  --with-sysroot=${PREFIX}/${TARGET} \
   --enable-wildcard \
   --with-libraries=winpthreads \
   --disable-shared
@@ -72,11 +72,13 @@ mv gmp-6.1.2 src/gmp
 mv mpc-1.1.0 src/mpc
 mv isl-0.18 src/isl
 
+ls -al src/
+
 echo "## Prepare to build gcc"
-cp -r ${PREFIX}/lib ${PREFIX}/lib64
-cp -r ${PREFIX}/ ${PREFIX}/mingw
+cp -r ${PREFIX}/${TARGET}/lib ${PREFIX}/${TARGET}/lib64
+cp -r ${PREFIX}/${TARGET} ${PREFIX}/mingw
 mkdir -p src/gcc/winsup/mingw
-cp -r ${PREFIX}/include src/gcc/winsup/mingw/include
+cp -r ${PREFIX}/${TARGET}/include src/gcc/winsup/mingw/include
 
 mkdir build
 cd build
