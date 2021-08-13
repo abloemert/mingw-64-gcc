@@ -92,29 +92,28 @@ echo "## Configure gcc"
   --host=${HOST} \
   --target=${TARGET} \
   --enable-default-pie \
-  --enable-languages=c,c++,fortran,objc,obj-c++ \
+  --enable-languages=c,c++,fortran,objc,obj-c++ `# only build specific languages` \
   --enable-__cxa_atexit \
   --disable-libmudflap \
-  --enable-libgomp \
+  --enable-libgomp `# Enable OpenMP` \
   --disable-libssp \
   --enable-libquadmath \
   --enable-libquadmath-support \
   --enable-libsanitizer \
-  --enable-lto \
-  --enable-threads=posix \
+  --enable-lto `# Enable link time optimization` \
+  --enable-threads=posix `# Use winpthreads` \
   --enable-target-optspace \
   --enable-plugin \
   --enable-gold \
-  --disable-nls \
-  --disable-multilib \
+  --disable-nls `# Disable Native Language Support` \
+  --disable-multilib `# Only support 64-bit` \
   --enable-long-long \
-  --enable-default-pie \
-  --with-sysroot=${PREFIX}
-  --with-gxx-include-dir="${PREFIX}/include/c++/8.4.0"
-  --disable-libstdcxx-pch \
-  --disable-libstdcxx-verbose \
+  --with-sysroot=${PREFIX} \
+  --with-gxx-include-dir="${PREFIX}/include/c++/8.4.0" \
+  --disable-libstdcxx-pch `# Not used and saves a lot of space` \
+  --disable-libstdcxx-verbose `# Reduce generated executable size` \
   --disable-win32-registry \
-  --with-tune=haswell
+  --with-tune=haswell `# Tune for Haswell by default`
 
 echo "## Build gcc"
 ${MAKE} "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
