@@ -73,10 +73,10 @@ mv mpc-1.1.0 src/mpc
 mv isl-0.18 src/isl
 
 echo "## Prepare to build gcc"
-cp -r ${PREFIX}/${TARGET}/lib ${PREFIX}/${TARGET}/lib64
-cp -r ${PREFIX}/${TARGET} ${PREFIX}/mingw
+cp -r ${PREFIX}/lib ${PREFIX}/lib64
+cp -r ${PREFIX}/ ${PREFIX}/mingw
 mkdir -p src/gcc/winsup/mingw
-cp -r ${PREFIX}/${TARGET}/include src/gcc/winsup/mingw/include
+cp -r ${PREFIX}/include src/gcc/winsup/mingw/include
 
 mkdir build
 cd build
