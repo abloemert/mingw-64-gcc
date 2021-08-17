@@ -41,8 +41,8 @@ echo "## Configure mingw-w64"
   --prefix=${PREFIX}/${TARGET} \
   --with-sysroot=${PREFIX}/${TARGET} \
   --enable-wildcard \
-  --with-libraries=winpthreads \
-  --disable-shared
+  --with-libraries=winpthreads
+#  --disable-shared
 
 echo "## Build mingw-w64"
 cd mingw-w64-headers
