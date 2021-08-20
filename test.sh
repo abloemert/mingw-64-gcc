@@ -107,6 +107,7 @@ echo "## Configure gcc"
   --enable-gold \
   --disable-nls `# Disable Native Language Support` \
   --disable-multilib `# Only support 64-bit` \
+  --disable-bootstrap `# Speed up build` \
   --enable-long-long \
   --with-sysroot=${PREFIX} \
   --with-gxx-include-dir="${PREFIX}/include/c++/8.4.0" \
