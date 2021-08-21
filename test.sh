@@ -92,7 +92,7 @@ echo "## Configure gcc"
   --host=${HOST} \
   --target=${TARGET} \
   --enable-default-pie \
-  --enable-languages=c,c++,fortran,objc,obj-c++ `# only build specific languages` \
+  --enable-languages=c,c++ `# only build specific languages` \
   --enable-__cxa_atexit \
   --disable-libmudflap \
   --enable-libgomp `# Enable OpenMP` \
