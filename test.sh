@@ -99,7 +99,7 @@ echo "## Configure gcc"
   --disable-libssp \
   --enable-libquadmath \
   --enable-libquadmath-support \
-  --enable-libsanitizer \
+  --disable-libsanitizer `# Disable libsanitizer, no support on windows` \
   --enable-lto `# Enable link time optimization` \
   --enable-threads=posix `# Use winpthreads` \
   --enable-target-optspace \
