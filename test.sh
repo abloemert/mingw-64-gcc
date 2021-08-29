@@ -103,7 +103,6 @@ echo "## Configure gcc"
   --enable-lto `# Enable link time optimization` \
   --enable-threads=posix `# Use winpthreads` \
   --enable-target-optspace \
-  --enable-plugin \
   --enable-gold \
   --disable-nls `# Disable Native Language Support` \
   --disable-multilib `# Only support 64-bit` \
