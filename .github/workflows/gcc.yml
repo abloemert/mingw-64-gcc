@@ -15,6 +15,7 @@ jobs:
       - name: Build gcc
         run: C:\msys64\msys2_shell.cmd -where . -no-start -defterm test.sh
       - name: Upload build artifacts
+        if: always()
         uses: actions/upload-artifact@v2.2.4
         with:
           path: dest
