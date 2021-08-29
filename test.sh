@@ -25,6 +25,28 @@ TARGET="x86_64-w64-mingw32"
 BUILD=$TARGET
 HOST=$TARGET
 
+echo "## Download binutils sources"
+wget -q https://ftp.gnu.org/gnu/binutils/binutils-2.31.1.tar.bz2
+tar xjf binutils-2.31.1.tar.bz2
+
+mkdir ${WORKSPACE}/build-binutils
+cd ${WORKSPACE}/build-binutils
+
+echo "## Configure binutils"
+../binutils-2.31.1/configure \
+  --build=${BUILD} \
+  --host=${HOST} \
+  --target=${TARGET} \
+  --disable-nls `# Disable Native Language Support` \
+  --disable-multilib `# Only support 64-bit` \
+  --prefix=${PREFIX}/${TARGET} \
+  --with-sysroot=${PREFIX}/${TARGET} \
+
+echo "## Build binutils"
+${MAKE} all
+${MAKE} install
+cd ${WORKSPACE}
+
 echo "## Download mingw-w64 sources"
 wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v6.0.0.tar.bz2
 tar xjf mingw-w64-v6.0.0.tar.bz2
@@ -42,7 +64,6 @@ echo "## Configure mingw-w64"
   --with-sysroot=${PREFIX}/${TARGET} \
   --enable-wildcard \
   --with-libraries=winpthreads
-#  --disable-shared
 
 echo "## Build mingw-w64"
 cd mingw-w64-headers
