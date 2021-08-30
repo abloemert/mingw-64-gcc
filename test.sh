@@ -40,6 +40,7 @@ echo "## Configure binutils"
   --target=${TARGET} \
   --disable-nls `# Disable Native Language Support` \
   --disable-multilib `# Only support 64-bit` \
+  --disable-shared `# Disable shared libs` \
   --prefix=${PREFIX}/binutils \
   --with-sysroot=${PREFIX}/binutils \
 
@@ -61,6 +62,7 @@ echo "## Configure mingw-w64"
   --host=${HOST} \
   --target=${TARGET} \
   --disable-lib32 \
+  --disable-shared `# Disable shared libs` \
   --prefix=${PREFIX}/${TARGET} \
   --with-sysroot=${PREFIX}/${TARGET} \
   --enable-wildcard \
@@ -128,6 +130,7 @@ echo "## Configure gcc"
   --enable-gold \
   --disable-nls `# Disable Native Language Support` \
   --disable-multilib `# Only support 64-bit` \
+  --disable-shared `# Disable shared libs` \
   --disable-bootstrap `# Speed up build` \
   --enable-long-long \
   --with-sysroot=${PREFIX} \
