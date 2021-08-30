@@ -8,8 +8,8 @@ set -e
 # print all commands
 set -x
 
-# probably not needed, only nasm is not installed by default
-#pacman -S --noconfirm --needed mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-nasm
+# probably not needed
+#pacman -S --noconfirm --needed mingw-w64-x86_64-nasm
 
 export PATH=$PATH:/mingw64/bin/
 
@@ -40,8 +40,8 @@ echo "## Configure binutils"
   --target=${TARGET} \
   --disable-nls `# Disable Native Language Support` \
   --disable-multilib `# Only support 64-bit` \
-  --prefix=${PREFIX}/${TARGET} \
-  --with-sysroot=${PREFIX}/${TARGET} \
+  --prefix=${PREFIX}/binutils \
+  --with-sysroot=${PREFIX}/binutils \
 
 echo "## Build binutils"
 ${MAKE} all
