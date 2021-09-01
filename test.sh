@@ -50,15 +50,15 @@ cd ${WORKSPACE}
 
 echo "## Download mingw-w64 sources"
 wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v9.0.0.tar.bz2
-tar xjf mingw-w64-v6.0.0.tar.bz2
+tar xjf mingw-w64-v9.0.0.tar.bz2
 
 mkdir ${WORKSPACE}/build-mingw-w64
 cd ${WORKSPACE}/build-mingw-w64
 
 echo "## Configure mingw-w64"
-../mingw-w64-v6.0.0/configure --help
+../mingw-w64-v9.0.0/configure --help
 
-../mingw-w64-v6.0.0/configure \
+../mingw-w64-v9.0.0/configure \
   --build=${BUILD} \
   --host=${HOST} \
   --target=${TARGET} \
