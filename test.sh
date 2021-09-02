@@ -49,7 +49,7 @@ ${MAKE} install
 cd ${WORKSPACE}
 
 echo "## Download mingw-w64 sources"
-MINGW_VERSION=7.0.0
+MINGW_VERSION=8.0.0
 wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v${MINGW_VERSION}.tar.bz2
 tar xjf mingw-w64-v${MINGW_VERSION}.tar.bz2
 
