@@ -64,9 +64,12 @@ echo "## Configure mingw-w64"
   --host=${HOST} \
   --target=${TARGET} \
   --disable-lib32 \
+  --enable-shared \
+  --enable-static \
   --prefix=${PREFIX}/${TARGET} \
   --with-sysroot=${PREFIX}/${TARGET} \
-  --enable-wildcard
+  --enable-wildcard \
+  --with-libraries=winpthreads
 
 echo "## Build mingw-w64"
 cd mingw-w64-headers
@@ -128,7 +131,7 @@ echo "## Configure gcc"
   --enable-libquadmath-support \
   --disable-libsanitizer `# Disable libsanitizer, no support on windows` \
   --enable-lto `# Enable link time optimization` \
-  --enable-threads=win32 `# Microsoft Win32 API thread support` \
+  --enable-threads=posix `# Use winpthreads` \
   --enable-target-optspace \
   --enable-gold \
   --disable-nls `# Disable Native Language Support` \
