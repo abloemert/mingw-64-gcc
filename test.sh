@@ -49,7 +49,7 @@ ${MAKE} install
 cd ${WORKSPACE}
 
 echo "## Download mingw-w64 sources"
-MINGW_VERSION=8.0.0
+MINGW_VERSION=7.0.0
 wget -q https://nav.dl.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v${MINGW_VERSION}.tar.bz2
 tar xjf mingw-w64-v${MINGW_VERSION}.tar.bz2
 
@@ -57,7 +57,7 @@ mkdir ${WORKSPACE}/build-mingw-w64
 cd ${WORKSPACE}/build-mingw-w64
 
 echo "## Configure mingw-w64"
-../mingw-w64-v${MINGW_VERSION}/configure --help
+../mingw-w64-v${MINGW_VERSION}/configure --help=recursive
 
 ../mingw-w64-v${MINGW_VERSION}/configure \
   --build=${BUILD} \
@@ -66,8 +66,7 @@ echo "## Configure mingw-w64"
   --disable-lib32 \
   --prefix=${PREFIX}/${TARGET} \
   --with-sysroot=${PREFIX}/${TARGET} \
-  --enable-wildcard \
-  --with-libraries=winpthreads
+  --enable-wildcard
 
 echo "## Build mingw-w64"
 cd mingw-w64-headers
@@ -116,6 +115,9 @@ echo "## Configure gcc"
   --build=${BUILD} \
   --host=${HOST} \
   --target=${TARGET} \
+  --disable-werror \
+  --enable-shared \
+  --enable-static \
   --enable-default-pie \
   --enable-languages=c,c++ `# only build specific languages` \
   --enable-__cxa_atexit \
@@ -126,7 +128,7 @@ echo "## Configure gcc"
   --enable-libquadmath-support \
   --disable-libsanitizer `# Disable libsanitizer, no support on windows` \
   --enable-lto `# Enable link time optimization` \
-  --enable-threads=posix `# Use winpthreads` \
+  --enable-threads=win32 `# Microsoft Win32 API thread support` \
   --enable-target-optspace \
   --enable-gold \
   --disable-nls `# Disable Native Language Support` \
@@ -134,11 +136,30 @@ echo "## Configure gcc"
   --disable-bootstrap `# Speed up build` \
   --enable-long-long \
   --with-sysroot=${PREFIX} \
-  --with-gxx-include-dir="${PREFIX}/include/c++/8.4.0" \
+  --with-gxx-include-dir="${PREFIX}/include/c++" \
   --disable-libstdcxx-pch `# Not used and saves a lot of space` \
   --disable-libstdcxx-verbose `# Reduce generated executable size` \
   --disable-win32-registry \
-  --with-tune=haswell `# Tune for Haswell by default`
+  --with-arch=nocona \
+  --with-tune=core2
+  
+# --enable-libstdcxx-time=yes
+# --enable-libatomic 
+# --enable-graphite
+# --enable-checking=release
+# --enable-fully-dynamic-string
+# --enable-version-specific-runtime-libs
+# --disable-isl-version-check
+# --disable-libstdcxx-pch
+# --disable-libstdcxx-debug
+# --disable-rpath
+# --disable-werror
+# --disable-symvers
+# --with-gnu-as
+# --with-gnu-ld
+# --with-libiconv
+# --with-system-zlib
+# --with-pkgversion='x86_64-win32-seh-rev0, Built by MinGW-W64 project'
 
 echo "## Build gcc"
 ${MAKE} "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
