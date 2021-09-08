@@ -40,6 +40,8 @@ echo "## Configure binutils"
   --target=${TARGET} \
   --disable-nls `# Disable Native Language Support` \
   --disable-multilib `# Only support 64-bit` \
+  --disable-shared \
+  --enable-static \
   --prefix=${PREFIX}/binutils \
   --with-sysroot=${PREFIX}/binutils \
 
@@ -64,7 +66,7 @@ echo "## Configure mingw-w64"
   --host=${HOST} \
   --target=${TARGET} \
   --disable-lib32 \
-  --enable-shared \
+  --disable-shared \
   --enable-static \
   --prefix=${PREFIX}/${TARGET} \
   --with-sysroot=${PREFIX}/${TARGET} \
@@ -119,7 +121,7 @@ echo "## Configure gcc"
   --host=${HOST} \
   --target=${TARGET} \
   --disable-werror \
-  --enable-shared \
+  --disable-shared \
   --enable-static \
   --enable-default-pie \
   --enable-languages=c,c++ `# only build specific languages` \
