@@ -115,33 +115,33 @@ cd build
 echo "## Configure gcc"
 ../src/configure \
   --prefix=${PREFIX} \
-  --with-slibdir="${PREFIX}/lib" \
-  --libdir="${PREFIX}/lib" \
+  #--with-slibdir="${PREFIX}/lib" \
+  #--libdir="${PREFIX}/lib" \
   --build=${BUILD} \
   --host=${HOST} \
   --target=${TARGET} \
-  --disable-werror \
+  #--disable-werror \
   --disable-shared \
-  --enable-static \
-  --enable-default-pie \
+  #--enable-static \
+  #--enable-default-pie \
   --enable-languages=c,c++ `# only build specific languages` \
-  --enable-__cxa_atexit \
-  --disable-libmudflap \
+  #--enable-__cxa_atexit \
+  #--disable-libmudflap \
   --enable-libgomp `# Enable OpenMP` \
-  --disable-libssp \
-  --enable-libquadmath \
-  --enable-libquadmath-support \
-  --disable-libsanitizer `# Disable libsanitizer, no support on windows` \
-  --enable-lto `# Enable link time optimization` \
+  #--disable-libssp \
+  #--enable-libquadmath \
+  #--enable-libquadmath-support \
+  #--disable-libsanitizer `# Disable libsanitizer, no support on windows` \
+  #--enable-lto `# Enable link time optimization` \
   --enable-threads=posix `# Use winpthreads` \
-  --enable-target-optspace \
-  --enable-gold \
+  #--enable-target-optspace \
+  #--enable-gold \
   --disable-nls `# Disable Native Language Support` \
   --disable-multilib `# Only support 64-bit` \
-  --disable-bootstrap `# Speed up build` \
-  --enable-long-long \
+  #--disable-bootstrap `# Speed up build` \
+  #--enable-long-long \
   --with-sysroot=${PREFIX} \
-  --with-gxx-include-dir="${PREFIX}/include/c++" \
+  #--with-gxx-include-dir="${PREFIX}/include/c++" \
   --disable-libstdcxx-pch `# Not used and saves a lot of space` \
   --disable-libstdcxx-verbose `# Reduce generated executable size` \
   --disable-win32-registry \
