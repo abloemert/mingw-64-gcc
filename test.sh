@@ -104,10 +104,10 @@ mv isl-0.18 src/isl
 ls -al src/
 
 echo "## Prepare to build gcc"
-cp -r ${PREFIX}/${TARGET}/lib ${PREFIX}/${TARGET}/lib64
-cp -r ${PREFIX}/${TARGET} ${PREFIX}/mingw
-mkdir -p src/gcc/winsup/mingw
-cp -r ${PREFIX}/${TARGET}/include src/gcc/winsup/mingw/include
+#cp -r ${PREFIX}/${TARGET}/lib ${PREFIX}/${TARGET}/lib64
+#cp -r ${PREFIX}/${TARGET} ${PREFIX}/mingw
+#mkdir -p src/gcc/winsup/mingw
+#cp -r ${PREFIX}/${TARGET}/include src/gcc/winsup/mingw/include
 
 mkdir build
 cd build
