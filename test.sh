@@ -43,7 +43,7 @@ echo "## Configure binutils"
   --disable-shared \
   --enable-static \
   --prefix=${PREFIX}/binutils \
-  --with-sysroot=${PREFIX}/binutils \
+  --with-sysroot=${PREFIX}/binutils
 
 echo "## Build binutils"
 ${MAKE} all
@@ -134,7 +134,7 @@ echo "## Configure gcc"
   `#--disable-libsanitizer` `# Disable libsanitizer, no support on windows` \
   `#--enable-lto` `# Enable link time optimization` \
   --enable-threads=posix `# Use winpthreads` \
-  `#--enable-target-optspace` \
+  --enable-target-optspace \
   `#--enable-gold` \
   --disable-nls `# Disable Native Language Support` \
   --disable-multilib `# Only support 64-bit` \
