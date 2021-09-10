@@ -104,13 +104,15 @@ mv isl-0.18 src/isl
 ls -al src/
 
 echo "## Prepare to build gcc"
-#cp -r ${PREFIX}/${TARGET}/lib ${PREFIX}/${TARGET}/lib64
 #cp -r ${PREFIX}/${TARGET} ${PREFIX}/mingw
+#cp -r ${PREFIX}/mingw/lib ${PREFIX}/mingw/lib64
 #mkdir -p src/gcc/winsup/mingw
-#cp -r ${PREFIX}/${TARGET}/include src/gcc/winsup/mingw/include
+#cp -r ${PREFIX}/mingw/include src/gcc/winsup/mingw/include
 
 mkdir build
 cd build
+
+# --enable-host-shared
 
 echo "## Configure gcc"
 ../src/configure \
@@ -168,4 +170,4 @@ echo "## Configure gcc"
 
 echo "## Build gcc"
 ${MAKE} bootstrap2-lean "CFLAGS=-g0 -O3" "CXXFLAGS=-g0 -O3" "CFLAGS_FOR_TARGET=-g0 -O3" "CXXFLAGS_FOR_TARGET=-g0 -O3" "BOOT_CFLAGS=-g0 -O3" "BOOT_CXXFLAGS=-g0 -O3"
-${MAKE} install
+${MAKE} install-strip
