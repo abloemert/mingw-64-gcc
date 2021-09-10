@@ -68,8 +68,8 @@ echo "## Configure mingw-w64"
   --disable-lib32 \
   --disable-shared \
   --enable-static \
-  --prefix=${PREFIX}/${TARGET} \
-  --with-sysroot=${PREFIX}/${TARGET} \
+  --prefix=${PREFIX}/mingw \
+  --with-sysroot=${PREFIX}/mingw \
   --enable-wildcard \
   --with-libraries=winpthreads
 
