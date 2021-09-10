@@ -8,9 +8,6 @@ set -e
 # print all commands
 set -x
 
-# probably not needed
-#pacman -S --noconfirm --needed mingw-w64-x86_64-nasm
-
 export PATH=$PATH:/mingw64/bin/
 
 mkdir dest
@@ -41,13 +38,37 @@ echo "## Configure binutils"
   --disable-nls `# Disable Native Language Support` \
   --disable-multilib `# Only support 64-bit` \
   --enable-shared \
-  --prefix=${PREFIX}/binutils \
-  --with-sysroot=${PREFIX}/binutils
+  --prefix=${PREFIX} \
+  --with-sysroot=${PREFIX}
 
 echo "## Build binutils"
 ${MAKE} all
 ${MAKE} install
 cd ${WORKSPACE}
+
+echo "## Download gdb sources"
+wget -q https://ftp.gnu.org/gnu/gdb/gdb-8.3.tar.gz
+tar xzf gdb-8.3.tar.gz
+
+mkdir ${WORKSPACE}/build-gdb
+cd ${WORKSPACE}/build-gdb
+
+echo "## Configure gdb"
+../gdb-8.3/configure \
+  --build=${BUILD} \
+  --host=${HOST} \
+  --target=${TARGET} \
+  --disable-nls `# Disable Native Language Support` \
+  --enable-shared \
+  --prefix=${PREFIX} \
+  --with-sysroot=${PREFIX}
+  
+echo "## Build gdb"
+${MAKE} all
+${MAKE} install
+cd ${WORKSPACE}
+
+exit
 
 echo "## Download mingw-w64 sources"
 MINGW_VERSION=7.0.0
