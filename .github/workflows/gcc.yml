@@ -4,7 +4,39 @@ on:
   push:
 
 jobs:
-  build:
+  binutils:
+    runs-on: windows-2016
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2.1.6
+        with:
+          path: "*.tar*"
+          key: ${{ runner.os }}-gcc
+      - name: Build binutils
+        run: C:\msys64\msys2_shell.cmd -where . -no-start -defterm binutils.sh
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: dest
+          if-no-files-found: error
+  gdb:
+    runs-on: windows-2016
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2.1.6
+        with:
+          path: "*.tar*"
+          key: ${{ runner.os }}-gcc
+      - name: Build gdb
+        run: C:\msys64\msys2_shell.cmd -where . -no-start -defterm gdb.sh
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: dest
+          if-no-files-found: error
+  gcc:
     runs-on: windows-2016
     steps:
       - uses: actions/checkout@v2
@@ -13,7 +45,7 @@ jobs:
           path: "*.tar*"
           key: ${{ runner.os }}-gcc
       - name: Build gcc
-        run: C:\msys64\msys2_shell.cmd -where . -no-start -defterm test.sh
+        run: C:\msys64\msys2_shell.cmd -where . -no-start -defterm gcc.sh
       - name: Upload build artifacts
         if: always()
         uses: actions/upload-artifact@v2.2.4
