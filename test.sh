@@ -6,21 +6,14 @@ set -e
 # print all commands
 set -x
 
-env
+wget -q https://sourceforge.net/projects/tkimg/files/tkimg/1.4/tkimg%201.4.13/Img-1.4.13-Source.tar.gz
 
-export PATH=$PATH:/mingw64/bin/
+tar xzf Img-1.4.13-Source.tar.gz
 
-mkdir dest
-export WORKSPACE=$(pwd)
-export PREFIX=${WORKSPACE}/dest
-export MAKE="make -s -j${NUMBER_OF_PROCESSORS} -O"
+export PREFIX=$(pwd)
 
-export CFLAGS="-s -O3 -Wno-expansion-to-defined -pipe"
-export CXXFLAGS="${CFLAGS}"
-export LDFLAGS="-Wl,-no-undefined" # fix shared builds
-
-export TARGET="x86_64-w64-mingw32"
-export BUILD=$TARGET
-export HOST=$TARGET
-
-env
+./configure --prefix=${PREFIX}        \
+            --with-tcl=${PREFIX}/lib  \
+            --with-tk=${PREFIX}/lib
+make -j${CPU_COUNT} ${VERBOSE_AT}
+make install
