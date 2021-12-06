@@ -12,6 +12,8 @@ tar xzf Img-1.4.13-Source.tar.gz
 
 export PREFIX=$(pwd)
 
+cd Img-1.4.13
+
 ./configure --prefix=${PREFIX}        \
             --with-tcl=${PREFIX}/lib  \
             --with-tk=${PREFIX}/lib
