@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Test Msys2
-        run: C:\msys64\msys2_shell.cmd -here -no-start -defterm test.sh
+        run: build.cmd
