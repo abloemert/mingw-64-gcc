@@ -6,6 +6,8 @@ set -e
 # print all commands
 set -x
 
+env
+
 export PATH=$PATH:/mingw64/bin/
 
 mkdir dest
@@ -20,3 +22,5 @@ export LDFLAGS="-Wl,-no-undefined" # fix shared builds
 export TARGET="x86_64-w64-mingw32"
 export BUILD=$TARGET
 export HOST=$TARGET
+
+env
