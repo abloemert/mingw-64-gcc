@@ -8,4 +8,4 @@ jobs:
     runs-on: windows-2016
     steps:
       - name: Test Msys2
-        run: C:\msys64\msys2_shell.cmd -here -no-start -defterm env
+        run: C:\msys64\msys2_shell.cmd -here -no-start -defterm echo $PATH
